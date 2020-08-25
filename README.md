@@ -8,7 +8,7 @@ Abstraction for command-line flag parsing (with no dependencies outside of the S
 
 Create a schema that defines your program flags (along with any commands, and the flags associated with those commands). 
 
-Once you have that schema defiend, then call `flags.Parse()` and pass it a pointer to your schema. 
+Once you have that schema defined, then call `flags.Parse()` and pass it a pointer to your schema. 
 
 This will result in the required flags being created while also populating the schema struct with the data provided by the user when running your cli application.
 
@@ -78,30 +78,22 @@ func main() {
 		fmt.Printf("error parsing schema: %v\n", err)
 		os.Exit(1)
 	}
+}
+```
 
-	fmt.Printf("\nfinal struct: %+v\n", s)
-	/*
-		Output:
+You should now find the `s` struct is populated with the following data:
 
-		{
-			Debug:true
-			Number:123
-			Message:something here
-			Foo:{
-				AAA:beepboop
-				BBB:666
-			}
-			Bar:{
-				CCC:false
-			}
-		}
-	*/
-
-	fmt.Printf("\nDebug: %+v\n", s.Debug)   // true
-	fmt.Printf("Number: %+v\n", s.Number)   // 123
-	fmt.Printf("Message: %+v\n", s.Message) // something here
-	fmt.Printf("AAA: %+v\n", s.Foo.AAA)     // beepboop
-	fmt.Printf("BBB: %+v\n", s.Foo.BBB)     // 666
-	fmt.Printf("CCC: %+v\n", s.Bar.CCC)     // false
+```go
+{
+	Debug:true
+	Number:123
+	Message:something here
+	Foo:{
+		AAA:beepboop
+		BBB:666
+	}
+	Bar:{
+		CCC:false
+	}
 }
 ```
